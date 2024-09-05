@@ -45,8 +45,8 @@ public class Reservation {
 	}
 	
 	public void updateDates(Date checkIn, Date checkOut) {
-		Date now = new Date();
-		if (checkIn.before(now) || checkOut.before(now)) {
+		//Date now = new Date(); <- Aqui, ele obtém o valor do computador. Existe uma maneira mais moderna de fazer isso usando 'get'
+		if (checkIn.before(getCheckIn()) && checkOut.before(getCheckOut())) {
 			throw new DomainException("Reservation dates for update must be future dates");
 		}
 		if (!checkOut.after(checkIn)) {
